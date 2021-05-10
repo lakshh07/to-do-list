@@ -1,0 +1,39 @@
+<%- include("header") -%>
+<div class="box" id="heading">
+  <h1><%= ListTitle %></h1>
+</div>
+<div class="box">
+  <% newListItems.forEach(function(i){ %>
+  <form action="/delete" method="post">
+    <div class="item">
+      <input
+        type="checkbox"
+        name="checkbox"
+        value="<%= i._id %>"
+        onChange="this.form.submit()"
+      />
+      <p><%= i.name %></p>
+    </div>
+    <input type="hidden" name="listName" value="<%= ListTitle %>"></input>
+  </form>
+  <% }); %>
+
+  <form action="/" class="item" method="post">
+    <input
+      type="text"
+      autocomplete="off"
+      placeholder="- New Item -"
+      name="newItem"
+    />
+    <button type="submit" name="list" value="<%= ListTitle %>">
+      <i class="fas fa-plus-circle"></i>
+    </button>
+  </form>
+</div> 
+<form action="/go" method="post" class="form2">
+  <label for="">Want to Merge With a New List : </label>
+  <input type="text" class="inputnew" autocomplete="off" placeholder="New List Name" name="addList">
+ <button type="submit" class="buttonGo"><i class="fas fa-arrow-circle-right"></i></button>
+</form>
+<a href="/" class="home-page">Home Page</a>
+<%- include("footer") -%>
