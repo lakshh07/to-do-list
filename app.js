@@ -32,7 +32,6 @@ const listSchema = {
 const List = mongoose.model("List", listSchema);
 
 const defaultItems = [];
-let l = "";
 app.get("/", function (req, res) {
   res.render("list", { ListTitle: today, newListItems: defaultItems });
   // console.log(defaultItems);
@@ -115,6 +114,6 @@ app.post("/delete", function (req, res) {
   }
 });
 
-app.listen(3000, function () {
-  console.log("Server started with 3000");
+app.listen(process.env.PORT || 3000, function () {
+  console.log("Server started successfully");
 });
