@@ -33,7 +33,10 @@ const List = mongoose.model("List", listSchema);
 
 const defaultItems = [];
 app.get("/", function (req, res) {
-  res.render("list", { ListTitle: today, newListItems: defaultItems });
+  Item.find({}, function (err, foundItems) {
+    res.render("list", { ListTitle: today, newListItems: foundItems });
+  });
+  // res.render("list", { ListTitle: today, newListItems: defaultItems });
   // console.log(defaultItems);
 });
 
